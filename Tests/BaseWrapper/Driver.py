@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class DriverWrapper:
-    def __init__(self, driver, wait_time=30):
+    def __init__(self, driver, wait_time=10):
         self.driver = driver
         self.waiter = wait_time
 
@@ -52,7 +52,7 @@ class DriverWrapper:
     def search_element_by_text(self, tag, text):
         try:
             WebDriverWait(self.driver, self.waiter).until(
-                ec.visibility_of_element_located(self.TEXT_SEARCH.format(tag, text)))
+                ec.visibility_of_element_located((By.XPATH, self.TEXT_SEARCH.format(tag, text))))
             element = self.driver.find_element(By.XPATH, self.TEXT_SEARCH.format(tag, text))
             return element
         except NoSuchElementException:
@@ -125,6 +125,33 @@ class DriverWrapper:
             element.click()
         except NoSuchElementException:
             print('Element with text "{0} is not on page"')
+
+    def search_element_by_css(self, locator):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
+            element = self.driver.find_element(By.CSS_SELECTOR, locator)
+            return element
+        except NoSuchElementException:
+            print('Element  located {0} not found'.format(locator))
+
+    def search_elements_by_xpath(self, xpath):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.visibility_of_all_elements_located((By.XPATH, xpath)))
+            elements = self.driver.find_elements(By.XPATH, xpath)
+            return elements
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(xpath))
+
+    def check_elements_presents_css(self, locator):
+        try:
+            element = self.driver.find_element(By.CSS_SELECTOR, locator)
+            return element.is_displayed()
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(locator))
+
+
 
 
 
