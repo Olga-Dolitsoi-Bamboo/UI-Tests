@@ -60,3 +60,7 @@ class Menu(DriverWrapper):
     def is_on_some_page(self, option_url):
         url = self.driver.current_url
         return option_url == url.rsplit('/', 1)[-1]
+
+    def scroll_to_sub_option(self, option_text):
+        option = self.search_element_by_text('a', option_text)
+        self.scroll_to_the_element(option)

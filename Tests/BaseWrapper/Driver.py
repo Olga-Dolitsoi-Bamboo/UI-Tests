@@ -103,8 +103,7 @@ class DriverWrapper:
         except NoSuchElementException:
             print('Element  located {0} not found'.format(element_id))
 
-    def scroll_to_the_element_css(self, element):
-        element = self.driver.find_element_by_css_selector(element)
+    def scroll_to_the_element(self, element):
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
 

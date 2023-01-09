@@ -8,8 +8,8 @@ CARDS_HISTORY_TEXT = ['Cards History', 'a']
 
 PRODUCTS_TEXT = ['Products', 'div']
 BRANDS_TEXT = ['Brands', 'a']
-PRODUCT_LIST_TEXT = ['Product list', 'a']
-PRODUCT_RULES_TEXT = ['Product rules', 'a']
+PRODUCT_LIST_TEXT = ['Product List', 'a']
+PRODUCT_RULES_TEXT = ['Product Rules', 'a']
 CATALOGS_TEXT = ['Catalogs', 'a']
 INVENTORY_TEXT = ['Inventory', 'a']
 
@@ -39,11 +39,11 @@ USERS_TEXT = ['Users', 'a']
 """Pages URLs"""
 
 NEW_ORDER_URL = 'dev.bamboocardportal.com'
-SOPPING_CARTS_URL = 'carts'
+SOPPING_CARTS_URL = 'shopping-carts'
 ORDER_HISTORY_URL = 'orders'
 CARDS_HISTORY_URL = 'cards'
 
-BRANDS_URL = 'dev.bamboocardportal.com'
+BRANDS_URL = ''
 PRODUCT_LIST_URL = 'products'
 PRODUCT_RULES_URL = 'product-rules'
 CATALOGS_URL = 'catalogs'
