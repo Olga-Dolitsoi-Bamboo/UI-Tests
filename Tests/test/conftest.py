@@ -20,14 +20,13 @@ def app(my_app):
     yield
     my_app.get('chrome://settings/clearBrowserData')
     my_app.find_element_by_xpath('//settings-ui').send_keys(Keys.ENTER)
+    clean_db()
     my_app.close()
 
 
 def clean_db():
     my_bd = odbc.connect(connectString=my_dbo.connection_string)
     cursor = my_bd.cursor()
-    cursor.execute("""SELECT [AccessToken]
-      FROM [Bamboo].[dbo].[AccessTokens]
-      WHERE Id=1726""")
-    token = cursor.fetchone()
-    print(token)
+    cursor.execute("""DELETE FROM [Bamboo].[dbo].[Clients] 
+        WHERE Clients.Name='Olga UI autotests1'""")
+    my_bd.commit()

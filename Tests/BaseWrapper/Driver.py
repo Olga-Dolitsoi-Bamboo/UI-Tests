@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class DriverWrapper:
-    def __init__(self, driver, wait_time=10):
+    def __init__(self, driver, wait_time=20):
         self.driver = driver
         self.waiter = wait_time
 
@@ -17,7 +17,7 @@ class DriverWrapper:
         try:
             WebDriverWait(self.driver, self.waiter).until(
                 ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
-            element = self.driver.find_element_by_css_selector(locator)
+            element = self.driver.find_element(By.CSS_SELECTOR, locator)
             element.click()
         except NoSuchElementException:
             print('Element located {0} not found'.format(locator))
@@ -34,11 +34,12 @@ class DriverWrapper:
 
     def input_in_search_field_css(self, locator, text):
         try:
-            WebDriverWait(self.driver, self.waiter).until(ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
+            WebDriverWait(self.driver, self.waiter).until(ec.presence_of_element_located((By.CSS_SELECTOR, locator)))
             element = self.driver.find_element(By.CSS_SELECTOR, locator)
             element.clear()
             element.click()
             element.send_keys(text)
+            element.send_keys(Keys.ENTER)
         except NoSuchElementException:
             print('Element located {0} not found'.format(locator))
 
@@ -150,7 +151,68 @@ class DriverWrapper:
         except NoSuchElementException:
             print('Elements  located {0} not found'.format(locator))
 
+    def wait_page_elements_presents(self, locator):
+        WebDriverWait(self.driver, self.waiter).until(
+            ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
 
+    def press_selected_place_of_elem(self, elem, x, y):
+        action = ActionChains(self.driver)
+        action.move_to_element_with_offset(elem, x, y)
+        action.click()
+        action.perform()
 
+    def dropdown_input_css(self, locator, value):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(ec.presence_of_element_located((By.CSS_SELECTOR, locator)))
+            element = self.driver.find_element(By.CSS_SELECTOR, locator)
+            element.clear()
+            element.click()
+            element.send_keys(value)
+            element.send_keys(Keys.DOWN)
+            element.send_keys(Keys.ENTER)
+        except NoSuchElementException:
+            print('Element located {0} not found'.format(locator))
 
+    def search_element_by_xpath(self, xpath):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.visibility_of_element_located((By.XPATH, xpath)))
+            element = self.driver.find_element(By.XPATH, xpath)
+            return element
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(xpath))
 
+    def check_is_present_css(self, locator):
+        try:
+            self.driver.find_element(By.CSS_SELECTOR, locator)
+        except NoSuchElementException:
+            return False
+        return True
+
+    def check_is_present_xpath(self, xpath):
+        try:
+            self.driver.find_element(By.XPATH, xpath)
+        except NoSuchElementException:
+            return False
+        return True
+
+    def check_is_present_name(self, name):
+        try:
+            self.driver.find_element(By.NAME, name)
+        except NoSuchElementException:
+            return False
+        return True
+
+    def check_is_present_id(self, my_id):
+        try:
+            self.driver.find_element(By.ID, my_id)
+        except NoSuchElementException:
+            return False
+        return True
+
+    def check_is_present_text(self, tag, text):
+        try:
+            self.driver.find_element(By.XPATH, self.TEXT_SEARCH.format(tag, text))
+        except NoSuchElementException:
+            return False
+        return True

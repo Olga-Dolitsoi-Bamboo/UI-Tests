@@ -1,0 +1,4 @@
+""" Clients """
+EXPECTED_CLIENT_1_STATUS = 'Live'
+EXPECTED_CLIENT_1_CATALOG = 'No Catalogs for this Client'
+EXPECTED_CLIENT_1_INTEGRATION = 'Api'

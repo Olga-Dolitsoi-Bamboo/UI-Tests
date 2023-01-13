@@ -16,9 +16,10 @@ class TestClassMenu:
         login_page.login_to_portal(dt.EMAIL_USERNAME, dt.EMAIL_PASSWORD)
         # Expand orders menu
         menu_page.expand_options(main_option)
-        # Go to Order History
+        # Go to some page
         menu_page.scroll_to_sub_option(sub_option[0])
         menu_page.go_to_option(sub_option)
+        # Verify if is on page
         assert menu_page.is_on_some_page(verify_url)
         # Tear down
 

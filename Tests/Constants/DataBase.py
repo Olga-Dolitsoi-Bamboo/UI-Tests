@@ -1,8 +1,8 @@
 DRIVER_NAME = 'SQL SERVER'
-SERVER_NAME = 'EC2AMAZ-QI33B5S'
+SERVER_NAME = 'bamboodev.chf1hdgo2dts.us-east-2.rds.amazonaws.com'
 DATABASE_NAME = 'Bamboo'
 USERNAME = 'usrbamboo'
-PASSWORD = 'DJ7xaAYY2vNMn8MygXK2'
+PASSWORD = 'gwoGakxhxdswxorGpFwE'
 
 connection_string = f"""
     DRIVER={{{DRIVER_NAME}}};
