@@ -192,9 +192,9 @@ class DriverWrapper:
     def check_is_present_xpath(self, xpath):
         try:
             self.driver.find_element(By.XPATH, xpath)
+            return True
         except NoSuchElementException:
             return False
-        return True
 
     def check_is_present_name(self, name):
         try:
@@ -216,3 +216,42 @@ class DriverWrapper:
         except NoSuchElementException:
             return False
         return True
+
+    def search_element_by_name(self, name):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.visibility_of_element_located((By.NAME, name)))
+            element = self.driver.find_element(By.NAME, name)
+            return element
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(name))
+
+    def cursor_on_element_css(self, locator):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.presence_of_element_located((By.CSS_SELECTOR, locator)))
+            element = self.driver.find_element(By.CSS_SELECTOR, locator)
+            action = ActionChains(self.driver)
+            action.move_to_element(element)
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(locator))
+
+    def cursor_on_element_xpath(self, xpath):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.presence_of_element_located((By.XPATH, xpath)))
+            element = self.driver.find_element(By.XPATH, xpath)
+            action = ActionChains(self.driver)
+            action.move_to_element(element)
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(xpath))
+
+    def search_parent_by_xpath(self, xpath):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.presence_of_element_located((By.XPATH, xpath)))
+            element = self.driver.find_element(By.XPATH, xpath)
+            parent_element = element.find_element(By.XPATH, "..")
+            return parent_element
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(xpath))

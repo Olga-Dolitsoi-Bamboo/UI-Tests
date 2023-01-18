@@ -27,6 +27,5 @@ def app(my_app):
 def clean_db():
     my_bd = odbc.connect(connectString=my_dbo.connection_string)
     cursor = my_bd.cursor()
-    cursor.execute("""DELETE FROM [Bamboo].[dbo].[Clients] 
-        WHERE Clients.Name='Olga UI autotests1'""")
+    cursor.execute(my_dbo.CLIENT_QUERY)
     my_bd.commit()

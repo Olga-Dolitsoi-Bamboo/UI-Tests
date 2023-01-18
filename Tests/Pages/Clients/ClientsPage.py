@@ -3,6 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from Tests.BaseWrapper.Driver import DriverWrapper
 from Tests.Pages.Clients.ClientDetailPage import ClientDetails
+from Tests.Pages.Clients.CreateClientPopup import CreateClient
 
 
 class Clients(DriverWrapper):
@@ -25,11 +26,14 @@ class Clients(DriverWrapper):
     EXACT_NAME_CLIENT_CSS = f'tr:nth-child(1){CLIENT_ROW_CSS}'
     PAGE_SWITCHERS_CSS = '.MuiPaginationItem-page'
     PAGE_CSS = '#table-client-list'
+    GO_TO_CLIENT_BUTTON = 'tr:nth-child({0})>td:nth-child(-1)'
 
     def go_to_create_clients(self):
         self.wait_page_elements_presents(self.PAGE_CSS)
         button = self.driver.find_element(By.CSS_SELECTOR, self.ADD_CLIENT_BUTTON_CSS)
         self.press_selected_place_of_elem(button, 133, 48)
+        add_client = CreateClient(self.driver)
+        return add_client
 
     def go_to_page_by_num(self, number):
         self.click_the_button_css(self.GO_TO_NUMBER_PAGE_CSS.format(number))
@@ -72,9 +76,9 @@ class Clients(DriverWrapper):
 
     def go_to_client_by_name(self, name_cl):
         client = self.search_element_by_xpath(self.CLIENT_BY_NAME_XPATH.format(name_cl))
-        WebDriverWait(self.driver, self.waiter).until(
-            ec.element_to_be_clickable((By.XPATH, self.CLIENT_BY_NAME_XPATH.format(name_cl))))
         self.scroll_to_the_element(client)
+        self.cursor_on_element_xpath(self.CLIENT_BY_NAME_XPATH.format(name_cl))
         client.click()
         client_details = ClientDetails(self.driver)
         return client_details
+
