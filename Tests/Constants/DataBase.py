@@ -13,6 +13,6 @@ connection_string = f"""
     pwd={PASSWORD};
 """
 
-CLIENT_QUERY = """DELETE FROM [Bamboo].[dbo].[Clients] 
-        WHERE Clients.Name='Olga UI autotests1' and Clients.Name='Olga UI autotests2' 
-        and Clients.Name='Olga UI autotests4'"""
+CLIENT_QUERY = """ DELETE FROM [Bamboo].[dbo].[Clients] 
+        WHERE Clients.Name='Olga UI autotests1' or Clients.Name='Olga UI autotests2' 
+        or Clients.Name='Olga UI autotests4'"""
