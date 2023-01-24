@@ -63,6 +63,12 @@ class Brands(DriverWrapper):
         create_brand_popup = CreateNewBrand(self.driver)
         return create_brand_popup
 
-
+    def check_filter_result_much(self, name):
+        brand = self.search_element_by_css(self.BRAND_CSS)
+        if brand.text == name:
+            return True
+        else:
+            print(brand.text)
+            return False
 
 

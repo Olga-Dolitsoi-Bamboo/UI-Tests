@@ -1,3 +1,5 @@
+import time
+
 from Tests.BaseWrapper.Driver import DriverWrapper
 from Tests.Pages.Clients.CreateClientPopup import CreateClient
 
@@ -17,7 +19,7 @@ class ClientDetails(DriverWrapper):
     ATTRIBUTE_XPATH = '//div[contains(text(), "{0}")]/following-sibling::div[1]'
     ADD_ACCOUNT_BUTTON_TEXT = 'Add account'
     ACTIVE_STATUS_SWITCH_NAME = 'liveStatus'
-    DELETE_CLIENT_BUTTON_CSS = 'button:nth-child(3)..MuiButton-textSizeLarge.MuiButton-sizeLarge'
+    DELETE_CLIENT_BUTTON_CSS = 'button:nth-child(3).MuiButton-textSizeLarge.MuiButton-sizeLarge'
     EDIT_CLIENT_BUTTON_CSS = '.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary' \
                              '.MuiButton-containedSizeLarge.MuiButton-sizeLarge '
     ACCOUNT_POPUP_CURRENCY_CSS = 'input[placeholder="Currency"]'
@@ -52,6 +54,7 @@ class ClientDetails(DriverWrapper):
             return False
 
     def check_other_attributes(self, exp_integration, exp_status, exp_commission):
+        time.sleep(3)
         integration = self.search_element_by_xpath(self.ATTRIBUTE_XPATH.format(self.INTEGRATION_TEXT))
         status = self.search_element_by_xpath(self.ATTRIBUTE_XPATH.format(self.STATUS_TEXT))
         commission = self.search_element_by_xpath(self.ATTRIBUTE_XPATH.format(self.CLIENT_COMMISSION_TEXT))
@@ -74,6 +77,7 @@ class ClientDetails(DriverWrapper):
     def add_account(self, currency, active=True):
         add_button = self.search_parent_by_xpath(self.TEXT_SEARCH.format('span', self.ADD_ACCOUNT_BUTTON_TEXT))
         add_button.click()
+        time.sleep(2)
         self.dropdown_input_css(self.ACCOUNT_POPUP_CURRENCY_CSS, currency)
         if active:
             self.dropdown_input_css(self.ACCOUNT_POPUP_STATUS_CSS, 'Live')

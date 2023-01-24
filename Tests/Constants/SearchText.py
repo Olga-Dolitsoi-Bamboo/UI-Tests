@@ -70,3 +70,11 @@ ANALYTICS_URL = 'analytics'
 USERS_URL = 'users'
 
 
+"""Brands page"""
+REGION_CASE_1 = 'United States of America'
+CURRENCY_CASE_1 = 'USD'
+SUPPLIER_CASE_1 = 'CY.SEND'
+INTEGRATION_CASE_1 = 'Api'
+BRAND_CASE_1 = 'UI Autotest do not touch object (US/USD)'
+
+

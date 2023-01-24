@@ -7,19 +7,23 @@ class BrandDetails(DriverWrapper):
         super().__init__(driver)
         self.driver = driver
 
-    BRAND_CURRENCY_XPATH = ''
-    BRAND_SUPPLIER_XPATH = ''
-    BRAND_REGION_XPATH = ''
-    BRAND_INTERNAL_ID = ''
-    AVAILABLE_DENOMINATIONS_XPATH = ''
-    CHECK_PRODUCTS_LINKED_TEXT = ''
-    DELETE_BRAND_BUTTON_CSS = ''
-    EDIT_BRAND_BUTTON_CSS = ''
+    BRAND_CURRENCY_XPATH = '//div[contains(text(), "Currency")]/div'
+    BRAND_SUPPLIER_XPATH = '//div[contains(text(), "Supplier")]/div'
+    BRAND_REGION_XPATH = '//div[contains(text(), "Region")]/div'
+    BRAND_INTERNAL_ID_XPATH = '//div[contains(text(), "Internal ID")]/div'
+    AVAILABLE_DENOMINATIONS_XPATH = '//p[contains(text(), "Available denominations"/div/div'
+    CHECK_PRODUCTS_LINKED_TEXT = 'a[href="/brands/53157/products"]>button'
+    DELETE_BRAND_BUTTON_CSS = '.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSecondary.MuiButton' \
+                              '-textSizeLarge.MuiButton-sizeLarge '
+    EDIT_BRAND_BUTTON_CSS = '.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary' \
+                            '.MuiButton-containedSizeLarge.MuiButton-sizeLarge '
     LIVE_STATUS_SWITCHER_CSS = ''
     URL_BRAND_SWITCHER_CSS = ''
-    DELETE_BRAND_POPUP = ''
-    DELETE_BUTTON_CSS = f'{DELETE_BRAND_POPUP}'
-    CANCEL_DELETE_BUTTON = f'{DELETE_BRAND_POPUP}'
+    DELETE_BRAND_POPUP = '.MuiPaper-elevation1.MuiPaper-rounded'
+    DELETE_BUTTON_CSS = f'{DELETE_BRAND_POPUP}>button..MuiButtonBase-root.MuiButton-root.MuiButton-contained' \
+                        f'.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge '
+    CANCEL_DELETE_BUTTON = f'{DELETE_BRAND_POPUP}>button..MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton' \
+                           f'-textSecondary.MuiButton-textSizeLarge.MuiButton-sizeLarge '
 
     def go_to_edit_brand(self):
         self.click_the_button_css(self.EDIT_BRAND_BUTTON_CSS)

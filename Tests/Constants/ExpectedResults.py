@@ -7,3 +7,6 @@ EXPECTED_CLIENT_2_STATUS = 'Active'
 EXPECTED_CLIENT_2_CATALOG = 'No Catalogs for this Client'
 EXPECTED_CLIENT_2_INTEGRATION = 'Manual'
 EXPECTED_CLIENT_2_COMMISSION = '1 %'
+
+"""Brands"""
+EXPECTED_BRAND_NAME_1 = 'UI Autotest do not touch object'

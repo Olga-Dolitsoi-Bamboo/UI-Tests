@@ -6,16 +6,16 @@ class CreateNewBrand(DriverWrapper):
         super().__init__(driver)
         self.driver = driver
 
-    BRAND_NAME_INPUT_NAME = ''
-    REGION_DROPDOWN_CSS = ''
-    CURRENCY_DROPDOWN_CSS = ''
-    XERO_DROPDOWN_CSS = ''
-    DESCRIPTION_INPUT_CSS = ''
-    TERMS_INPUT_CSS = ''
-    INSTRUCTION_INPUT_CSS = ''
+    BRAND_NAME_INPUT_NAME = 'brandName'
+    REGION_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
+    CURRENCY_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
+    XERO_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
+    DESCRIPTION_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
+    TERMS_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
+    INSTRUCTION_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
     LIVE_STATUS_SWITCHER_CSS = ''
     URL_BRAND_SWITCHER_CSS = ''
-    SAVE_NEW_BRAND_CSS = ''
+    SAVE_NEW_BRAND_CSS = 'button[type="submit"]'
 
     def fill_brand_info(self, name, region, currency, xero='', description='', terms='', instruction=''):
         self.input_in_search_field_name(self.BRAND_NAME_INPUT_NAME, name)
@@ -40,7 +40,9 @@ class CreateNewBrand(DriverWrapper):
                          live_satus=True, url_brand=True):
         self.fill_brand_info(name, region, currency, xero, description, terms, instruction)
         self.set_statuses(live_satus, url_brand)
-        self.click_the_button_css(self.SAVE_NEW_BRAND_CSS)
+        submit = self.search_element_by_css(self.SAVE_NEW_BRAND_CSS)
+        self.scroll_to_the_element(submit)
+        submit.click()
 
 
 
