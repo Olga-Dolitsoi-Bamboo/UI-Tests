@@ -7,12 +7,12 @@ class CreateNewBrand(DriverWrapper):
         self.driver = driver
 
     BRAND_NAME_INPUT_NAME = 'brandName'
-    REGION_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
-    CURRENCY_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
-    XERO_DROPDOWN_CSS = 'div[name="integrationType"]>div>div>input'
-    DESCRIPTION_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
-    TERMS_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
-    INSTRUCTION_INPUT_CSS = '//label[contains(text(), "{1}")]/following:div/textarea'
+    REGION_DROPDOWN_CSS = 'div[name="countryCode"]>div>div>input'
+    CURRENCY_DROPDOWN_CSS = 'div[name="currencyCode"]>div>div>input'
+    XERO_DROPDOWN_CSS = 'div[name="xeroAccountId"]>div>div>input'
+    DESCRIPTION_INPUT_NAME = 'textarea[name="description"]'
+    TERMS_INPUT_CSS = '//label[contains(text(), "Terms and Condition")]/following:div/textarea'
+    INSTRUCTION_INPUT_CSS = '//label[contains(text(), "Redemption Instructions")]/following:div/textarea'
     LIVE_STATUS_SWITCHER_CSS = ''
     URL_BRAND_SWITCHER_CSS = ''
     SAVE_NEW_BRAND_CSS = 'button[type="submit"]'
@@ -24,7 +24,7 @@ class CreateNewBrand(DriverWrapper):
         if xero != '':
             self.dropdown_input_css(self.XERO_DROPDOWN_CSS, xero)
         if description != '':
-            self.input_in_search_field_css(self.DESCRIPTION_INPUT_CSS, description)
+            self.input_in_search_field_css(self.DESCRIPTION_INPUT_NAME, description)
         if terms != '':
             self.input_in_search_field_css(self.TERMS_INPUT_CSS, terms)
         if instruction != '':

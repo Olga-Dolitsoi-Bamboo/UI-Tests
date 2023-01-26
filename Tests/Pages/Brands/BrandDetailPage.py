@@ -7,9 +7,9 @@ class BrandDetails(DriverWrapper):
         super().__init__(driver)
         self.driver = driver
 
-    BRAND_CURRENCY_XPATH = '//div[contains(text(), "Currency")]/div'
-    BRAND_SUPPLIER_XPATH = '//div[contains(text(), "Supplier")]/div'
-    BRAND_REGION_XPATH = '//div[contains(text(), "Region")]/div'
+    BRAND_CURRENCY_XPATH = '//div[contains(text(), "Currency")]/following-sibling::div'
+    BRAND_SUPPLIER_XPATH = '//div[contains(text(), "Supplier")]/following-sibling::div'
+    BRAND_REGION_XPATH = '//div[contains(text(), "Region")]/following-sibling::div'
     BRAND_INTERNAL_ID_XPATH = '//div[contains(text(), "Internal ID")]/div'
     AVAILABLE_DENOMINATIONS_XPATH = '//p[contains(text(), "Available denominations"/div/div'
     CHECK_PRODUCTS_LINKED_TEXT = 'a[href="/brands/53157/products"]>button'
@@ -51,10 +51,13 @@ class BrandDetails(DriverWrapper):
             return True
         elif currency.text != exp_currency:
             print(f'{currency.text} is not equal {exp_currency}')
+            return False
         elif supplier.text != exp_supplier:
             print(f'{supplier.text} is not equal {exp_supplier}')
+            return False
         elif region.text != exp_region:
             print(f'{region.text} is not equal {exp_region}')
+            return False
 
     def delete_brand(self):
         self.click_the_button_css(self.DELETE_BRAND_BUTTON_CSS)

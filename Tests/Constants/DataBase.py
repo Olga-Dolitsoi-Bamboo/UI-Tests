@@ -16,3 +16,6 @@ connection_string = f"""
 CLIENT_QUERY = """ DELETE FROM [Bamboo].[dbo].[Clients] 
         WHERE Clients.Name='Olga UI autotests1' or Clients.Name='Olga UI autotests2' 
         or Clients.Name='Olga UI autotests4'"""
+
+BRANDS_QUERY = """  DELETE FROM [Bamboo].[dbo].[Brands]
+  WHERE Name='Olga UI test brand'"""

@@ -1,4 +1,7 @@
+import time
+
 from Tests.BaseWrapper.Driver import DriverWrapper
+from Tests.Pages.Brands.BrandDetailPage import BrandDetails
 from Tests.Pages.Brands.CreateNewBrandPopup import CreateNewBrand
 
 
@@ -22,7 +25,10 @@ class Brands(DriverWrapper):
 
     def find_brand_with_search_field(self, brand_name):
         self.input_in_search_field_name(self.SEARCH_FIELD_NAME, brand_name)
+        time.sleep(3)
         self.click_the_button_css(self.BRAND_CSS)
+        brand_details = BrandDetails(self.driver)
+        return brand_details
 
     def filter_brands_by_supplier(self, value):
         self.dropdown_input_css(self.SUPPLIER_FILTER_DROPDOWN_CSS, value)
@@ -43,8 +49,11 @@ class Brands(DriverWrapper):
             self.dropdown_input_css(self.INTEGRATION_FILTER_DROPDOWN_CSS, 'Manual')
 
     def go_to_brand_by_name(self, name):
-        brand = self.search_element_by_text('div', name)
+        brand = self.search_element_by_text('a/div', name)
+        self.scroll_to_the_element(brand)
         brand.click()
+        brand_detail_page = BrandDetails(self.driver)
+        return brand_detail_page
 
     def is_brand_in_list(self, name):
         self.check_is_present_text('div', name)

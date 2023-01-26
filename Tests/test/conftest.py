@@ -29,3 +29,5 @@ def clean_db():
     cursor = my_bd.cursor()
     cursor.execute(my_dbo.CLIENT_QUERY)
     my_bd.commit()
+    cursor.execute(my_dbo.BRANDS_QUERY)
+    my_bd.commit()

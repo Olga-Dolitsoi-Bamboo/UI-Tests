@@ -62,3 +62,8 @@ NAME_ERROR_MESSAGE = 'The name must not be shorter than 2 characters.'
 INTEGRATION_ERROR_MESSAGE = 'Type is required.'
 
 
+"""Brands"""
+BRAND_NAME_1 = 'Olga UI test brand'
+BRAND_CURRENCY_1 = 'AED'
+BRAND_REGION_1 = 'United Arab Emirates'
+BRAND_DESCRIPTION_1 = 'This is my test brand'
