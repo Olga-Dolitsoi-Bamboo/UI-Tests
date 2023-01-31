@@ -146,10 +146,11 @@ class DriverWrapper:
 
     def check_elements_presents_css(self, locator):
         try:
-            element = self.driver.find_element(By.CSS_SELECTOR, locator)
-            return element.is_displayed()
+            self.driver.find_element(By.CSS_SELECTOR, locator)
+            return True
         except NoSuchElementException:
             print('Elements  located {0} not found'.format(locator))
+            return False
 
     def wait_page_elements_presents(self, locator):
         WebDriverWait(self.driver, self.waiter).until(
@@ -255,3 +256,6 @@ class DriverWrapper:
             return parent_element
         except NoSuchElementException:
             print('Elements  located {0} not found'.format(xpath))
+
+
+

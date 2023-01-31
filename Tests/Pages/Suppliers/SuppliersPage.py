@@ -1,3 +1,5 @@
+import time
+
 from Tests.BaseWrapper.Driver import DriverWrapper
 
 
@@ -8,14 +10,15 @@ class Suppliers(DriverWrapper):
 
     SEARCH_FIELD_NAME = 'searchText'
     CURRENCY_FILTER_CSS = 'input[placeholder="Currency"]'
-    TAG_FOR_SUPPLIER_ROW = 'tbody/tr/td:nth-child(1)'
+    TAG_FOR_SUPPLIER_ROW = 'tbody//tr:nth-child(1)/td:nth-child(1)'
+    SUPPLIER_NAME_CSS = 'tr:has(td[value="{0}"])'
 
     def go_to_supplier_with_search(self, search_text):
         self.input_in_search_field_name(self.SEARCH_FIELD_NAME, search_text)
         self.search_element_by_xpath('//' + self.TAG_FOR_SUPPLIER_ROW).click()
 
     def go_to_supplier_by_name(self, supplier_name):
-        supplier = self.search_element_by_text(self.TAG_FOR_SUPPLIER_ROW, supplier_name)
+        supplier = self.search_element_by_css(self.SUPPLIER_NAME_CSS.format(supplier_name))
         self.scroll_to_the_element(supplier)
         supplier.click()
 

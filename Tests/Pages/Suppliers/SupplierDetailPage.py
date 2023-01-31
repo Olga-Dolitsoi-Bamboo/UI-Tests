@@ -12,6 +12,7 @@ class SupplierDetails(DriverWrapper):
     SUPPLIER_ACCOUNT_CURRENCY_AMOUNT_XPATH = '/tr/following-sibling::td[2][contains(text(), ' \
                                              '"{0}")]/following-sibling::td[1]'
     SUPPLIERS_ACCOUNTS_XPATH = f'//h3[contains(text(), "My Accounts")]//tbody{SUPPLIER_ACCOUNT_CURRENCY_AMOUNT_XPATH}'
+    SUPPLIER_ACCOUNTS_CURRENCIES_XPATH = 'td[value="{0}"]'
     PRODUCT_CONFIGURATION_BY_ID_XPATH = '/tr/td[1][contains(text(),"{0}")]'
     PRODUCT_CONFIGURATION_XPATH = f'//h3[contains(text(), "Product Configurations")]//tbody' \
                                   f'{PRODUCT_CONFIGURATION_BY_ID_XPATH} '
@@ -79,4 +80,14 @@ class SupplierDetails(DriverWrapper):
         account = self.search_element_by_xpath(self.SUPPLIERS_ACCOUNTS_XPATH.format(currency))
         amount = account.text
         return amount
+
+    def check_accounts_are_present(self, exp_acc_list):
+        result = True
+        for currency in exp_acc_list:
+            status = self.check_elements_presents_css(self.SUPPLIER_ACCOUNTS_CURRENCIES_XPATH.format(currency))
+            if not status:
+                result = False
+        return result
+
+
 
