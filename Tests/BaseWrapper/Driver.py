@@ -192,10 +192,11 @@ class DriverWrapper:
 
     def check_is_present_xpath(self, xpath):
         try:
-            self.driver.find_element(By.XPATH, xpath)
-            return True
+            element = self.driver.find_element(By.XPATH, xpath)
+            print(element.text)
         except NoSuchElementException:
             return False
+        return True
 
     def check_is_present_name(self, name):
         try:
@@ -257,5 +258,20 @@ class DriverWrapper:
         except NoSuchElementException:
             print('Elements  located {0} not found'.format(xpath))
 
+    def scroll_inside_div_xpath(self, xpath, div_locator):
+        try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.presence_of_element_located((By.CSS_SELECTOR, xpath)))
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.presence_of_element_located((By.CSS_SELECTOR, div_locator)))
+            element = self.driver.find_element(By.XPATH, div_locator)
+            div_element = self.driver.find_element(By.XPATH, xpath)
+            actions = ActionChains(self.driver)
+            actions.move_to_element(div_element)
+            actions.move_to_element(element).perform()
+        except NoSuchElementException:
+            print('Elements  located {0} not found'.format(xpath))
 
+    def scroll_to_element_script(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 

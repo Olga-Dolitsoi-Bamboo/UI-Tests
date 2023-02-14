@@ -18,14 +18,15 @@ class AddConfiguration(DriverWrapper):
     ADD_ASSIGNMENT_BUTTON = f'{ADD_CONFIGURATION_POPUP} .MuiButtonBase-root.MuiButton-root.MuiButton-contained' \
                             f'.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge'
 
-    def create_configuration(self, conf_id, region, face_value, currency, supp_price, price_currency,
-                             vat_type, vat_value):
+    def create_configuration(self, conf_id, region, face_value, currency, supp_price, price_currency, vat_value,
+                             vat_type=''):
         self.input_in_search_field_name(self.CONFIG_ID_INPUT_NAME, conf_id)
         self.dropdown_input_css(self.REGION_DROPDOWN_CSS, region)
         self.input_in_search_field_name(self.FACE_VALUE_INPUT_NAME, face_value)
         self.dropdown_input_css(self.CURRENCY_DROPDOWN_CSS, currency)
         self.input_in_search_field_name(self.SUPPLIER_PRICE_INPUT_NAME, supp_price)
         self.dropdown_input_css(self.PRICE_CURRENCY_DROPDOWN_CSS, price_currency)
-        self.dropdown_input_css(self.VAT_TYPE_DROPDOWN_CSS, vat_type)
+        if vat_type != '':
+            self.dropdown_input_css(self.VAT_TYPE_DROPDOWN_CSS, vat_type)
         self.input_in_search_field_name(self.VAT_VALUE_INPUT_NAME, vat_value)
         self.click_the_button_css(self.ADD_ASSIGNMENT_BUTTON)
