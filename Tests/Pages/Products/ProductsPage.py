@@ -1,5 +1,6 @@
 from Tests.BaseWrapper.Driver import DriverWrapper
 from Tests.Pages.Products.IProductsTab import IntegratedProducts
+from Tests.Pages.Products.NIProductsTab import NonIntegratedProducts
 
 
 class Products(DriverWrapper):
@@ -8,8 +9,8 @@ class Products(DriverWrapper):
         self.driver = driver
 
     # Locators
-    INTEGRATED_PRODUCTS_TAB = 'button[tabindex="0"]'
-    NON_INTEGRATED_PRODUCTS_TAB = 'button[tabindex="1"]'
+    INTEGRATED_PRODUCTS_TAB = 'Integrated'
+    NON_INTEGRATED_PRODUCTS_TAB = 'Non-integrated'
     SUPPLIERS_DROPDOWN_CSS = 'div[placeholder = "All Suppliers"]>div>div>input'
     REGIONS_DROPDOWN_CSS = 'div[placeholder = "All Regions"]>div>div>input'
     CURRENCIES_DROPDOWN_CSS = 'div[placeholder = "All Currencies"]>div>div>input'
@@ -27,12 +28,11 @@ class Products(DriverWrapper):
             return integrated_page
 
     def go_to_non_integrated_tab(self):
-        non_integrated_tab = self.search_element_by_css(self.INTEGRATED_PRODUCTS_TAB)
-        is_selected = non_integrated_tab.get_attribute("aria-selected")
-        if is_selected == "false":
-            non_integrated_tab.click()
-            non_integrated_page = IntegratedProducts(self.driver)
-            return non_integrated_page
+        non_integrated = self.search_element_by_text('span', self.NON_INTEGRATED_PRODUCTS_TAB)
+        non_integrated_tab = non_integrated.find_element_by_xpath('..')
+        non_integrated_tab.click()
+        non_integrated_page = NonIntegratedProducts(self.driver)
+        return non_integrated_page
 
     def filter_products_by_suppliers(self, supplier_name):
         self.dropdown_input_css(self.SUPPLIERS_DROPDOWN_CSS, supplier_name)

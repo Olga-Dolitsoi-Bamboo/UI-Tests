@@ -109,3 +109,10 @@ PRODUCT_CONFIGURATION_CASE_1 = {'Product Code': PRODUCT_CONFIG_ID_CASE_1, 'Count
                                 'Supplier Price': PRODUCT_CONFIG_SUPPLIER_PRICE_CASE_1,
                                 'Price Currency': PRODUCT_CONFIG_PRICE_CURRENCY_CASE_1,
                                 'Vat Value': PRODUCT_CONFIG_VAT_VALUE_CASE_1}
+
+"""Products"""
+NI_PRODUCT_NAME_CASE_1 = 'UI test NI product 1'
+NI_PRODUCT_DENOMINATION_CASE_1 = '10'
+NI_PRODUCT_SKU_CASE_1 = 'UI-TEST-NI-PRODUCT-1-10-AED'
+NI_PRODUCT_CURRENCY_CASE_1 = 'AED'
+NI_PRODUCT_BRAND_CASE_1 = 'Do not change brand UI test'
