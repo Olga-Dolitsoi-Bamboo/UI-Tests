@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -42,6 +44,11 @@ class DriverWrapper:
             element.send_keys(Keys.ENTER)
         except NoSuchElementException:
             print('Element located {0} not found'.format(locator))
+
+    @staticmethod
+    def input_in_element(element, text):
+        element.send_keys(text)
+        element.send_keys(Keys.ENTER)
 
     def clear_fild_css(self, locator):
         try:
