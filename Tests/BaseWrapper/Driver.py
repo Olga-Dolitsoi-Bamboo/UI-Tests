@@ -135,7 +135,7 @@ class DriverWrapper:
 
     def search_element_by_css(self, locator):
         try:
-            WebDriverWait(self.driver, self.waiter).until(
+            WebDriverWait(self.driver, 30).until(
                 ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
             element = self.driver.find_element(By.CSS_SELECTOR, locator)
             return element
@@ -153,6 +153,8 @@ class DriverWrapper:
 
     def check_elements_presents_css(self, locator):
         try:
+            WebDriverWait(self.driver, 30).until(
+                ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
             self.driver.find_element(By.CSS_SELECTOR, locator)
             return True
         except NoSuchElementException:
@@ -192,18 +194,22 @@ class DriverWrapper:
 
     def check_is_present_css(self, locator):
         try:
+            WebDriverWait(self.driver, 30).until(
+                ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
             self.driver.find_element(By.CSS_SELECTOR, locator)
+            return True
         except NoSuchElementException:
             return False
-        return True
 
     def check_is_present_xpath(self, xpath):
         try:
+            WebDriverWait(self.driver, self.waiter).until(
+                ec.visibility_of_element_located((By.XPATH, xpath)))
             element = self.driver.find_element(By.XPATH, xpath)
             print(element.text)
+            return True
         except NoSuchElementException:
             return False
-        return True
 
     def check_is_present_name(self, name):
         try:
@@ -282,3 +288,18 @@ class DriverWrapper:
     def scroll_to_element_script(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
+    @staticmethod
+    def input_into_element(element, text):
+        element.clear()
+        element.click()
+        element.send_keys(text)
+
+    def click_on_element(self, element):
+        action_chains = ActionChains(self.driver)
+        action_chains.move_to_element(element).perform()
+        action_chains.click().perform()
+
+    def click_with_timeout(self, element):
+        WebDriverWait(self.driver, self.waiter).until(
+            ec.element_to_be_clickable((By.XPATH, element)))
+        element.click()

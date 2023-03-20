@@ -1,4 +1,5 @@
 from Tests.BaseWrapper.Driver import DriverWrapper
+from Tests.Pages.Catalogs.AddClientPopup import AddClient
 
 
 class CatalogDetails(DriverWrapper):
@@ -23,6 +24,8 @@ class CatalogDetails(DriverWrapper):
     ACTIVE_PRODUCTS_TAB_TEXT = 'Active'
     INACTIVE_PRODUCTS_TAB_TEXT = 'Inactive'
     CLIENTS_TAB_TEXT = 'Clients'
+    ADD_CLIENTS_BUTTON = 'Add clients'
+    CLIENT_IN_LIST_CSS = 'td[value="{0}"]'
 
     def go_to_active_products(self):
         tab = self.search_element_by_text('span', self.ACTIVE_PRODUCTS_TAB_TEXT)
@@ -77,4 +80,15 @@ class CatalogDetails(DriverWrapper):
         span_tag = self.search_element_by_text('span', self.DOWNLOAD_CLIENT_PRICE_LIST_TEXT)
         button = span_tag.find_element_by_xpath('..')
         button.click()
+
+    def add_client_to_catalog(self):
+        button = self.search_element_by_text('span', self.ADD_CLIENTS_BUTTON)
+        elem = button.find_element_by_xpath('..')
+        self.click_on_element(elem)
+        add_client_popup = AddClient(self.driver)
+        return add_client_popup
+
+    def check_client_is_present(self, client_name):
+        result = self.check_is_present_css(self.CLIENT_IN_LIST_CSS.format(client_name))
+        return result
 
