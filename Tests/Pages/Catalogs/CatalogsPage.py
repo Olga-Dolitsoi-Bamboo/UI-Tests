@@ -1,4 +1,8 @@
+import time
+
 from Tests.BaseWrapper.Driver import DriverWrapper
+from Tests.Pages.Catalogs.AddCatalogPopup import AddCatalog
+from Tests.Pages.Catalogs.CatalogDetailsPage import CatalogDetails
 
 
 class Catalogs(DriverWrapper):
@@ -12,6 +16,7 @@ class Catalogs(DriverWrapper):
     BRANDS_DROPDOWN_CSS = 'div[placeholder = "All Brands"]>div>div>input'
     CLIENTS_DROPDOWN_CSS = 'div[placeholder = "All Brands"]>div>div>input'
     CATALOG_NAME_LINK_CSS = 'div[title = "{0}"]'
+    CATALOG_XPATH = '//div[contains(text(), "{0}")]'
     CREATE_CATALOG_BUTTON = '.MuiFab-primary'
     ADDITIONAL_OPTIONS_CSS = f'{CATALOG_NAME_LINK_CSS} div>div>svg'
     CREATE_ORDER_OPTION_TEXT = 'Create order'
@@ -19,10 +24,16 @@ class Catalogs(DriverWrapper):
     DELETE_CATALOG_OPTION_TEXT = 'Delete'
     ADD_ALL_PRODUCTS_OPTION_TEXT = 'Add all products'
     EDIT_CATALOG_OPTION_CSS = 'Edit'
+    ADD_CATALOG_BUTTON_SPAN_TEXT = 'Add new catalog'
 
     def click_create_catalog(self):
-        create_button = self.search_element_by_css(self.CREATE_CATALOG_BUTTON)
-        self.press_selected_place_of_elem(create_button, 149, 48)
+        button = self.search_element_by_text('span', self.ADD_CATALOG_BUTTON_SPAN_TEXT)
+        self.click_on_element(button)
+        # self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        # create_button = self.search_element_by_css(self.CREATE_CATALOG_BUTTON)
+        # self.press_selected_place_of_elem(create_button, 149, 0)
+        add_catalog_popup = AddCatalog(self.driver)
+        return add_catalog_popup
 
     def filter_catalogs_by_region(self, region):
         self.dropdown_input_css(self.REGIONS_DROPDOWN_CSS, region)
@@ -39,6 +50,12 @@ class Catalogs(DriverWrapper):
     def go_to_catalog(self, catalog_name):
         catalog = self.search_element_by_css(self.CATALOG_NAME_LINK_CSS.format(catalog_name))
         catalog.click()
+        catalog_details = CatalogDetails(self.driver)
+        return catalog_details
+
+    def verify_catalog_exist(self, catalog_name):
+        result = self.check_is_present_xpath(self.CATALOG_XPATH.format(catalog_name))
+        return result
 
     def duplicate_catalog(self, name):
         catalog_options = self.search_element_by_css(self.ADDITIONAL_OPTIONS_CSS.format(name))

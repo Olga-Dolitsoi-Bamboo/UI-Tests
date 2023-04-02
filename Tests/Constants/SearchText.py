@@ -1,7 +1,7 @@
 """Menu page elements"""
 
 ORDERS_TEXT = ['Orders', 'div']
-NEW_ORDER_TEXT = ['Order History', 'a']
+NEW_ORDER_TEXT = ['New Order', 'div']
 SOPPING_CARTS_TEXT = ['Shopping Carts', 'a']
 ORDER_HISTORY_TEXT = ['Order History', 'a']
 CARDS_HISTORY_TEXT = ['Cards History', 'a']

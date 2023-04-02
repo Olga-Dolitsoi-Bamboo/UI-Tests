@@ -19,3 +19,12 @@ CLIENT_QUERY = """ DELETE FROM [Bamboo].[dbo].[Clients]
 
 BRANDS_QUERY = """  DELETE FROM [Bamboo].[dbo].[Brands]
   WHERE Name='Olga UI test brand'"""
+
+PRODUCTS_QUERY = """DELETE FROM [Bamboo].[dbo].[Products]
+        WHERE Products.Name='UI test NI product 1'"""
+CATALOG_QUERY = """DELETE FROM [Bamboo].[dbo].[Catalogs]
+        WHERE Catalogs.Name='UI test Catalog 1'"""
+
+CATALOG_CLIENT_QUERY = """UPDATE [Bamboo].[dbo].[Clients]
+        SET CatalogId=NULL
+        WHERE Clients.Name='UI test do not change'"""

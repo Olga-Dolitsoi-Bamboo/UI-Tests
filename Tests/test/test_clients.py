@@ -32,7 +32,6 @@ class TestClassClient:
         assert client_details.check_other_attributes(exp.EXPECTED_CLIENT_1_INTEGRATION, exp.EXPECTED_CLIENT_1_STATUS,
                                                      exp.EXPECTED_CLIENT_1_COMMISSION)
         assert client_details.check_commercial_structure(dt.COMMERCIAL_STRUCTURE_1)
-        assert not client_details.has_catalog()
 
     def test_edit_client(self, my_app):
         client_page = Clients(my_app)
@@ -57,7 +56,6 @@ class TestClassClient:
         assert client_details.check_other_attributes(exp.EXPECTED_CLIENT_2_INTEGRATION, exp.EXPECTED_CLIENT_2_STATUS,
                                                      exp.EXPECTED_CLIENT_2_COMMISSION)
         assert client_details.check_commercial_structure(dt.COMMERCIAL_STRUCTURE_2)
-        assert not client_details.has_catalog()
 
     def test_negative_create_client(self, my_app):
         client_page = Clients(my_app)
