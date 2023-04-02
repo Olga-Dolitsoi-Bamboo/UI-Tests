@@ -26,7 +26,7 @@ class DriverWrapper:
 
     def input_in_search_field_name(self, name, text):
         try:
-            WebDriverWait(self.driver, self.waiter).until(ec.visibility_of_element_located((By.NAME, name)))
+            WebDriverWait(self.driver, self.waiter).until(ec.element_to_be_clickable((By.NAME, name)))
             element = self.driver.find_element(By.NAME, name)
             element.clear()
             element.click()
