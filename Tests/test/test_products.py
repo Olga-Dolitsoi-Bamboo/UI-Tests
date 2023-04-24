@@ -1,8 +1,8 @@
-from Tests.Pages.LoginPage import Login
-from Tests.Pages.MenuPage import Menu
-from Tests.Pages.Products.ProductsPage import Products
-from Tests.Constants import Data as dt
-from Tests.Constants import SearchText as st
+from Pages.LoginPage import Login
+from Pages.MenuPage import Menu
+from Pages.Products.ProductsPage import Products
+from Constants import Data as dt
+from Constants import SearchText as st
 
 
 class TestClassProducts:

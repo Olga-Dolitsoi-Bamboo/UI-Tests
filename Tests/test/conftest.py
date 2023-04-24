@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 import pypyodbc as odbc
-from Tests.Constants import DataBase as my_dbo
+from Constants import DataBase as my_dbo
 
 
 @pytest.fixture()
@@ -20,7 +20,7 @@ def app(my_app):
     yield
     my_app.get('chrome://settings/clearBrowserData')
     my_app.find_element_by_xpath('//settings-ui').send_keys(Keys.ENTER)
-    clean_db()
+    #clean_db()
     my_app.close()
 
 
