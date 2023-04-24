@@ -1,13 +1,13 @@
 import pytest
 
-from Tests.Pages.LoginPage import Login
-from Tests.Pages.MenuPage import Menu
-from Tests.Constants import Data as dt
-from Tests.Constants import SearchText as st
-from Tests.Constants import ExpectedResults as exp
-from Tests.Pages.Suppliers.SuppliersPage import Suppliers
-from Tests.Pages.Suppliers.SupplierDetailPage import SupplierDetails
-from Tests.Pages.Suppliers.AddConfigurationPopup import AddConfiguration
+from Pages.LoginPage import Login
+from Pages.MenuPage import Menu
+from Constants import Data as dt
+from Constants import SearchText as st
+from Constants import ExpectedResults as exp
+from Pages.Suppliers.SuppliersPage import Suppliers
+from Pages.Suppliers.SupplierDetailPage import SupplierDetails
+from Pages.Suppliers.AddConfigurationPopup import AddConfiguration
 
 
 class TestSuppliers:
