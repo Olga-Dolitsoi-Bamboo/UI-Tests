@@ -1,4 +1,5 @@
 import pytest
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
@@ -9,7 +10,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture()
 def my_app():
-    driver = webdriver.Chrome(executable_path='/home/olga/my-project/Tests/chromedriver')
+    if 'JENKINS_HOME' in os.environ:
+        # Running in Jenkins, use absolute path to Chromedriver
+        chromedriver_path = '/usr/local/bin/chromedriver'
+    else:
+        # Running locally, use relative path to Chromedriver
+        chromedriver_path = '/home/olga/my-project/Tests/chromedriver'
+
+    driver = webdriver.Chrome(executable_path=chromedriver_path)
     return driver
 
 
