@@ -35,9 +35,11 @@ def app(my_app):
     my_app.implicitly_wait(3)
     my_app.maximize_window()
     yield
-    my_app.get('chrome://settings/clearBrowserData')
-    my_app.find_element_by_xpath('//settings-ui').send_keys(Keys.ENTER)
-    #clean_db()
+    my_app.delete_all_cookies()
+    #
+    # my_app.get('chrome://settings/clearBrowserData')
+    # my_app.find_element_by_xpath('//settings-ui').send_keys(Keys.ENTER)
+    # #clean_db()
     my_app.close()
 
 
