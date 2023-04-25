@@ -15,7 +15,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 def my_app():
     if 'JENKINS_HOME' in os.environ:
         chrome_options = Options()
-        chrome_options.binary_location = r"/usr/bin/google-chrome-stable /usr/share/man/man1/google-chrome-stable.1.gz"
+        chrome_options.binary_location = r"/usr/bin/google-chrome-stable"
         chrome_options.add_argument('--headless')
 
         chromedriver_path = r"/home/olga/my-project/Tests/chromedriver"
