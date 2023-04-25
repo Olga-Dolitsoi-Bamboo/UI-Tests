@@ -3,6 +3,7 @@ import argparse
 import pytest
 import os
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
@@ -13,18 +14,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 @pytest.fixture()
 def my_app():
     if 'JENKINS_HOME' in os.environ:
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--chromedriver', required=True)
-        args = parser.parse_args()
+        chrome_options = Options()
+        chrome_options.binary_location = r"/usr/bin/google-chrome-stable /usr/share/man/man1/google-chrome-stable.1.gz"
+        chrome_options.add_argument('--headless')
 
+        chromedriver_path = r"/home/olga/my-project/Tests/chromedriver"
         # Create a new Chrome webdriver instance with the specified Chromedriver binary path
-        driver = webdriver.Chrome(executable_path=args.chromedriver)
-        chromedriver_path = args.chromedriver
+        driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+
     else:
         # Running locally, use relative path to Chromedriver
         chromedriver_path = '/home/olga/my-project/Tests/chromedriver'
-
-    driver = webdriver.Chrome(executable_path=chromedriver_path)
+        driver = webdriver.Chrome(executable_path=chromedriver_path)
     return driver
 
 
