@@ -1,3 +1,5 @@
+import argparse
+
 import pytest
 import os
 from selenium import webdriver
@@ -11,8 +13,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 @pytest.fixture()
 def my_app():
     if 'JENKINS_HOME' in os.environ:
-        # Running in Jenkins, use absolute path to Chromedriver
-        chromedriver_path = '/usr/local/bin/chromedriver'
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--chromedriver', required=True)
+        args = parser.parse_args()
+
+        # Create a new Chrome webdriver instance with the specified Chromedriver binary path
+        driver = webdriver.Chrome(executable_path=args.chromedriver)
+        chromedriver_path = args.chromedriver
     else:
         # Running locally, use relative path to Chromedriver
         chromedriver_path = '/home/olga/my-project/Tests/chromedriver'
