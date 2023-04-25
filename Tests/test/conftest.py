@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-import pypyodbc as odbc
+#import pypyodbc as odbc
 from Constants import DataBase as my_dbo
 
 
