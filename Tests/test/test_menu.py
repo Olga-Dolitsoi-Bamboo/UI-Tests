@@ -1,8 +1,7 @@
 import pytest
-from Pages.LoginPage import Login
-from Pages.MenuPage import Menu
-from Constants import SearchText as st
-from Constants import Data as dt
+from Tests.Pages.LoginPage import Login
+from Tests.Pages.MenuPage import Menu
+from Tests.Constants import Data as dt
 
 
 class TestClassMenu:

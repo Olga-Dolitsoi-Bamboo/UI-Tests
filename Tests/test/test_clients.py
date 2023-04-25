@@ -1,13 +1,11 @@
 import time
 
-from Pages.Clients.ClientsPage import Clients
-from Pages.Clients.CreateClientPopup import CreateClient
-from Pages.LoginPage import Login
-from Pages.MenuPage import Menu
-from Constants import Data as dt
-from Constants import SearchText as st
-from Constants import ExpectedResults as exp
-import pytest
+from Tests.Pages.Clients.ClientsPage import Clients
+from Tests.Pages.LoginPage import Login
+from Tests.Pages.MenuPage import Menu
+from Tests.Constants import Data as dt
+from Tests.Constants import SearchText as st
+from Tests.Constants import ExpectedResults as exp
 
 
 class TestClassClient:

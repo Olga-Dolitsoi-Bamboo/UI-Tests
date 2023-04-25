@@ -1,8 +1,8 @@
-from Pages.Catalogs.CatalogsPage import Catalogs
-from Pages.LoginPage import Login
-from Pages.MenuPage import Menu
-from Constants import Data as dt
-from Constants import SearchText as st
+from Tests.Pages.Catalogs.CatalogsPage import Catalogs
+from Tests.Pages.LoginPage import Login
+from Tests.Pages.MenuPage import Menu
+from Tests.Constants import Data as dt
+from Tests.Constants import SearchText as st
 
 
 class TestClassCatalog:

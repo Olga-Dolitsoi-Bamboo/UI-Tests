@@ -1,9 +1,9 @@
-from Pages.Brands.BrandsPage import Brands
-from Pages.LoginPage import Login
-from Pages.MenuPage import Menu
-from Constants import Data as dt
-from Constants import SearchText as st
-from Constants import ExpectedResults as exp
+from Tests.Pages.Brands.BrandsPage import Brands
+from Tests.Pages.LoginPage import Login
+from Tests.Pages.MenuPage import Menu
+from Tests.Constants import Data as dt
+from Tests.Constants import SearchText as st
+from Tests.Constants import ExpectedResults as exp
 
 
 class TestBrands:
