@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 #import pypyodbc as odbc
@@ -8,7 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture()
 def my_app():
-    driver = webdriver.Chrome('Tests/chromedriver.exe')
+    chromedriver_path = 'Tests/chromedriver.exe'
+    service = Service(executable_path=chromedriver_path)
+    driver = webdriver.Chrome(service=service)
     return driver
 
 
