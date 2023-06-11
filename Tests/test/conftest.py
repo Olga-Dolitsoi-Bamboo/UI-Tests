@@ -18,7 +18,7 @@ def my_app():
         chrome_options.binary_location = r"/usr/bin/google-chrome-stable"
         chrome_options.add_argument('--headless')
 
-        chromedriver_path = r"/home/olga/my-project/Tests/chromedriver"
+        chromedriver_path = r'/home/olga/PycharmProjects/UI-Tests/Tests/chromedriver'
         # Create a new Chrome webdriver instance with the specified Chromedriver binary path
         driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
 
